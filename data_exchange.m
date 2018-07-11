@@ -1,21 +1,21 @@
 %function
 
 %[h,data_info] = GetCsiData(FILENAME,skip_f,skip_t)
-%h bwÂË²¨ºóµÄÊı¾İ skip_f Ç°ÃæÌø¹ıµÄ°Ù·Ö±È skip_tºóĞøÌø¹ıµÄ°Ù·Ö±È
+%h bwæ»¤æ³¢åçš„æ•°æ® skip_f å‰é¢è·³è¿‡çš„ç™¾åˆ†æ¯” skip_tåç»­è·³è¿‡çš„ç™¾åˆ†æ¯”
 
 %pca = PCA(h,m)   
-%hÔ­Ê¼Êı¾İ m·µ»ØµÚ¼¸²ã?
+%håŸå§‹æ•°æ® mè¿”å›ç¬¬å‡ å±‚?
 
 %[cA,cD] = GetDWT(data,limit,type)  
-%data Ô­Ê¼Êı¾İ limit ×î´ó²ãÊı£¨²»ÌîÄ¬ÈÏ10£© type ±ä»»ÀàĞÍ£¨²»ÌîÄ¬ÈÏdb4£©
+%data åŸå§‹æ•°æ® limit æœ€å¤§å±‚æ•°ï¼ˆä¸å¡«é»˜è®¤10ï¼‰ type å˜æ¢ç±»å‹ï¼ˆä¸å¡«é»˜è®¤db4ï¼‰
 
 %r = GetDWT2(data,limit,up,low,type)
-%data Ô­Ê¼Êı¾İ limit ×î´ó²ãÊı£¨²»ÌîÄ¬ÈÏ10£©up low ·µ»ØµÄ²ãÊı·¶Î§£¨²»ÌîÄ¬ÈÏ3~6²ã£© type ±ä»»ÀàĞÍ£¨²»ÌîÄ¬ÈÏdb4£©
+%data åŸå§‹æ•°æ® limit æœ€å¤§å±‚æ•°ï¼ˆä¸å¡«é»˜è®¤10ï¼‰up low è¿”å›çš„å±‚æ•°èŒƒå›´ï¼ˆä¸å¡«é»˜è®¤3~6å±‚ï¼‰ type å˜æ¢ç±»å‹ï¼ˆä¸å¡«é»˜è®¤db4ï¼‰
 
 function [r, pca, h, T] = data_exchange(filename, pca_l, dwt_up, dwt_low, draw_flag, test_flag)
-    addpath ..\MATLAB
+    addpath .\MATLAB
 
-    %bwÂË²¨´¦Àí
+    %bwæ»¤æ³¢å¤„ç†
     if test_flag == false
         h = GetCsiData(filename);
     else
@@ -32,26 +32,26 @@ function [r, pca, h, T] = data_exchange(filename, pca_l, dwt_up, dwt_low, draw_f
 %         plot(h(i, 1:T))
 %     end
     
-    %pca½µÔë
+    %pcaé™å™ª
     pca = PCA(h, pca_l);
 
-    %ÀëÉ¢Ğ¡²¨±ä»»´¦Àí
+    %ç¦»æ•£å°æ³¢å˜æ¢å¤„ç†
     r = GetDWT2(pca, 10, dwt_up, dwt_low);
     
     if draw_flag == true
-        %»æÖÆbw´¦Àí½á¹û
+        %ç»˜åˆ¶bwå¤„ç†ç»“æœ
         figure(1)
         n = 3;
         for i = 1 : n
             subplot(n, 1, i);
             plot(h(i, 1:T))
         end
-        %»æÖÆpca´¦Àí½á¹û
+        %ç»˜åˆ¶pcaå¤„ç†ç»“æœ
         figure(2)
         plot(pca(1:6000));
         xlabel('Time');
         ylabel('Amplitude');
-%         %»æÖÆÀëÉ¢Ğ¡²¨´¦Àí½á¹û
+%         %ç»˜åˆ¶ç¦»æ•£å°æ³¢å¤„ç†ç»“æœ
 %         figure(3)
 %         for i = dwt_up : dwt_low
 %             subplot(dwt_low-dwt_up+1, 1, i-dwt_up+1);
