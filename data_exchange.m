@@ -13,7 +13,7 @@
 %data 原始数据 limit 最大层数（不填默认10）up low 返回的层数范围（不填默认3~6层） type 变换类型（不填默认db4）
 
 function [r, pca, h, T] = data_exchange(filename, pca_l, dwt_up, dwt_low, draw_flag, test_flag)
-    addpath ..\MATLAB
+    addpath .\MATLAB
 
     %bw滤波处理
     if test_flag == false
