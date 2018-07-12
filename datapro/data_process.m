@@ -2,7 +2,7 @@ clear
 addpath 'api'
 
 draw_flag = 1;      %是否绘图
-data_flag = 'd';    %数据文件类型
+data_flag = 'm';    %数据文件类型
 test_flag = 1;      %是否为测试
 db4_flag = 0;       %是否进行离散小波处理
 
@@ -39,7 +39,7 @@ for i = 1:N
     T = size(tm, 1);
     if draw_flag == true
         %绘制PCA结果
-        for j = 1:1
+        for j = 1:pcl
             figure(j)
             plot(pca(1:T,j));
             %绘制db4结果
