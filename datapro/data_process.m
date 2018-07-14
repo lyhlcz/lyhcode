@@ -1,10 +1,10 @@
 clear 
 addpath 'api'
 
-draw_flag = 0;      %是否绘图
+draw_flag = 1;      %是否绘图
 data_flag = 'm';    %数据文件类型
 test_flag = 1;      %是否为测试
-db4_flag = 1;       %是否进行离散小波处理
+db4_flag = 0;       %是否进行离散小波处理
 
 if test_flag == true
     if data_flag == 'm'
@@ -19,35 +19,13 @@ else
     files = getallfiles(datapath);
 end 
 
-N = size(files,1);  %文件个数
+N = size(files,1);  %   number of files
 F = cell([N 1]);
-pcl = 10;
-fs = 2500;
 for i = 1:N
-    %获取csi数据
+    %   get csi and tm
     [csi, tm] = loadData(files{i}, data_flag);
-    T = size(tm, 1);
     
-    %PCA处理
-    pca = filter_pca(csi, pcl);
-
-    %绘制PCA结果
-    if draw_flag == true
-        for j = 1:pcl
-            figure(j)
-            plot(pca(1:T,j));      
-        end
-    end   
-    
-    %db4处理
-    if db4_flag == true  
-        sum = 0;
-        for j = 1:pcl
-            temp = interp1(tm,pca(:,j),(tm(1):1/fs:tm(end)),'linear');
-            temp = temp(21:end); % remove bad data introduced by PCA filter
-            sum = sum + carm_feature(temp); 
-        end
-        F{i} = sum/pcl;
-    end   
+    %   get feature
+    F{i} = getFeature(csi, tm, draw_flag, db4_flag);
 end
     

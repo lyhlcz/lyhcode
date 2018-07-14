@@ -23,7 +23,7 @@ function [data]=waveletproc2(s,fragsize)
     r = [];
     for i = 3:7
         temp = wrcoef('d',c,l,wave,i).'; % column vector
-        figure(11)
+        figure(2)
         plot(temp);
         r = [r temp];
     end
