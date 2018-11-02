@@ -45,6 +45,7 @@ void read_bfee(unsigned char *inBytes, mxArray *outCell)
 		remainder = index % 8;
 		for (j = 0; j < Nrx * Ntx; ++j)
 		{
+            mexErrMsgIdAndTxt("MIMOToolbox:read_bfee_new:size","index/8");
 			tmp = (payload[index / 8] >> remainder) |
 				(payload[index/8+1] << (8-remainder));			
 			*ptrR = (double) tmp;

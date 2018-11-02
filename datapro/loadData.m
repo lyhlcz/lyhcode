@@ -16,6 +16,7 @@ function [ csi, tm ] = loadData( file, data_flag )
         % load csi_trace
         addpath './MATLAB'
         csi_trace = read_bf_file(file);
+        
         % get Ntx, Nrx and timestamps
         [T,R,tm] = cellfun(@get_info,csi_trace); 
 

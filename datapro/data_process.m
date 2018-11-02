@@ -1,10 +1,10 @@
 clear 
 addpath 'api'
 
-draw_flag = 1;      %是否绘图
-data_flag = 'm';    %数据文件类型
+draw_flag = 0;      %是否绘图
+data_flag = 'd';    %数据文件类型
 test_flag = 1;      %是否为测试
-db4_flag = 0;       %是否进行离散小波处理
+db4_flag = 1;       %是否进行离散小波处理
 
 if test_flag == true
     if data_flag == 'm'

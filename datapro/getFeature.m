@@ -4,7 +4,6 @@ function [ F ] = getFeature( csi, tm, draw_flag, db4_flag )
 %   output: feature
     pcl = 10;
     fs = 2500;
-    T = size(tm, 1);
     
     %   PCA
     pca = filter_pca(csi, pcl);
@@ -13,7 +12,7 @@ function [ F ] = getFeature( csi, tm, draw_flag, db4_flag )
     if draw_flag == true
         for j = 1:pcl
             figure(j)
-            plot(pca(1:T,j));      
+            plot(pca(1:6000,j));      
         end
     end   
     

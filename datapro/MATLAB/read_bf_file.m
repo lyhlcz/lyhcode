@@ -63,14 +63,14 @@ while cur < (len - 3)
     
     if (code == 187) %hex2dec('bb')) Beamforming matrix -- output a record
         count = count + 1;
-        ret{count} = read_bfee(bytes);
+        ret{count} = read_bfee2(bytes);
         
         perm = ret{count}.perm;
         Nrx = ret{count}.Nrx;
         if Nrx == 1 % No permuting needed for only 1 antenna
             continue;
         end
-        if sum(perm) ~= triangle(Nrx) % matrix does not contain default values
+        if sum(perm) ~= triangle(Nrx) % matxrix does not contain default values
             if broken_perm == 0
                 broken_perm = 1;
                 fprintf('WARN ONCE: Found CSI (%s) with Nrx=%d and invalid perm=[%s]\n', filename, Nrx, int2str(perm));
